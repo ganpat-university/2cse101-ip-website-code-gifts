@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Common Window Methods</title>
+<script>
+
+var myWindow;  // note global here, wrap in object if you like
+
+window.addEventListener("load", function (){
+
+	function openWindow() {
+	 myWindow = open('','mywin','height=400,width=500,scrollbars=yes');
+
+	 var HTMLstr = "<!DOCTYPE html>";
+	 HTMLstr += "<html>\n<head>\n<meta charset='utf-8'>\n<title>Test Window</title>\n</head>\n";
+	 HTMLstr += "<body style='background: #fc6'>\n<h1>JavaScript Window Methods</h1>\n";
+	 HTMLstr += "<div style='height=600px;width=600px;background:#fc6'>\n<img src='HTML5.png'>\n</div>";
+	 HTMLstr += "</body></html>";
+	 
+	 myWindow.document.writeln(HTMLstr);
+	 myWindow.document.close();
+	 myWindow.focus();
+	}
+
+
+	function moveWindowTo() {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.moveTo(document.getElementById("moveX").value, document.getElementById("moveY").value);
+	}   
+
+	function moveWindowBy(x,y) {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.moveBy(x, y);
+	}
+
+	function scrollWindowTo() {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.scrollTo(document.getElementById("moveX").value, document.getElementById("scrollY").value);
+	}
+
+	function scrollWindowBy(x,y) {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.scrollBy(x, y);
+	}
+	   
+	function resizeWindowTo() {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.resizeTo(document.getElementById("resizeX").value, document.getElementById("resizeY").value);
+	}
+
+	function resizeWindowBy(x,y) {
+	 if ((window.myWindow) && (myWindow.closed == false))
+		myWindow.resizeBy(x, y);
+	}
+	  
+	function closeWindow(){
+		if(myWindow)
+		myWindow.close();
+	}
+
+	function focusWindow(){
+		if (myWindow)
+		{
+			myWindow.focus();
+		}
+		/*else
+		{
+			console.log("Window is closed");
+			alert("Closed Already");
+		}*/
+	}
+
+	function blurWindow(){
+		if (myWindow) myWindow.blur();
+	}
+
+	function stopWindow(){
+		if (myWindow) myWindow.stop();
+	}
+
+	function printWindow(){
+		if (myWindow) myWindow.print();
+	}
+
+
+
+		document.getElementById("openBtn").addEventListener("click",openWindow,true);
+		document.getElementById("closeBtn").addEventListener("click",closeWindow,true);
+		document.getElementById("focusBtn").addEventListener("click",focusWindow,true);
+		
+		document.getElementById("blurBtn").addEventListener("click",blurWindow,true);
+		document.getElementById("stopBtn").addEventListener("click",stopWindow,true);
+		document.getElementById("printBtn").addEventListener("click",printWindow,true);
+		
+		document.getElementById("upMoveBtn").addEventListener("click",function(){moveWindowBy(0,-10);},true);
+		document.getElementById("leftMoveBtn").addEventListener("click",function(){moveWindowBy(-10,0);},true);
+		document.getElementById("rightMoveBtn").addEventListener("click",function(){moveWindowBy(10,0);},true);
+		document.getElementById("downMoveBtn").addEventListener("click",function(){moveWindowBy(0,10);},true);
+		document.getElementById("moveBtn").addEventListener("click",moveWindowTo,true);
+		
+		document.getElementById("upScrollBtn").addEventListener("click",function(){scrollWindowBy(0,-10);},true);
+		document.getElementById("leftScrollBtn").addEventListener("click",function(){scrollWindowBy(-10,0);},true);
+		document.getElementById("rightScrollBtn").addEventListener("click",function(){scrollWindowBy(10,0);},true);
+		document.getElementById("downScrollBtn").addEventListener("click",function(){scrollWindowBy(0,10);},true);
+		document.getElementById("scrollBtn").addEventListener("click",scrollWindowTo,true);
+		
+		document.getElementById("upResizeBtn").addEventListener("click",function(){resizeWindowBy(0,-10);},true);
+		document.getElementById("leftResizeBtn").addEventListener("click",function(){resizeWindowBy(-10,0);},true);
+		document.getElementById("rightResizeBtn").addEventListener("click",function(){resizeWindowBy(10,0);},true);
+		document.getElementById("downResizeBtn").addEventListener("click",function(){resizeWindowBy(0,10);},true);
+		document.getElementById("resizeBtn").addEventListener("click",resizeWindowTo,true);
+		
+	  openWindow();
+}, true);
+
+
+</script>
+</head>
+<body>
+<h1>Window Methods Tester</h1>
+<hr>
+<form name="testform" id="testform">
+<input type="button" value="Open Window" id="openBtn">
+<input type="button" value="Stop Load" id="stopBtn">
+<input type="button" value="Close Window" id="closeBtn">
+<input type="button" value="Focus Window" id="focusBtn">
+<input type="button" value="Blur Window" id="blurBtn">
+<input type="button" value="Print" id="printBtn">
+<br><br>
+<input type="button" value="Move Up" id="upMoveBtn">
+<input type="button" value="Move Left" id="leftMoveBtn">
+<input type="button" value="Move Right" id="rightMoveBtn">
+<input type="button" value="Move Down" id="downMoveBtn">
+<br><br>
+
+<label>X: <input type="text" size="4" id="moveX" value="0"></label>
+<label>Y: <input type="text" size="4" id="moveY" value="0"></label>
+<input type="button" value="Move To" id="moveBtn">
+<br><br>
+<input type="button" value="Scroll Up" id="upScrollBtn">
+<input type="button" value="Scroll Left" id="leftScrollBtn">
+<input type="button" value="Scroll Right" id="rightScrollBtn">
+<input type="button" value="Scroll Down" id="downScrollBtn">
+<br><br>
+
+<label>X: <input type="text" size="4" id="scrollX" value="0"></label> 
+<label>Y: <input type="text" size="4" id="scrollY" value="0"></label>
+<input type="button" value="Scroll To" id="scrollBtn">
+<br><br>
+<input type="button" value="Resize Up" id="upResizeBtn">
+<input type="button" value="Resize Left" id="leftResizeBtn">
+<input type="button" value="Resize Right" id="rightResizeBtn">
+<input type="button" value="Resize Down" id="downResizeBtn">
+
+<br><br>
+<label>X: <input type="text" size="4" id="resizeX" value="0"></label> 
+<label>Y: <input type="text" size="4" id="resizeY" value="0"></label>
+<input type="button" value="Resize To" id="resizeBtn">
+<br><br>
+<input type="button" id="test">
+<script>
+	if(document.getElementById("test"))
+	{
+		alert("True");
+	}
+	else{
+		alert("False");
+	}
+
+	</script>
+
+</form>
+</body>
+</html>
